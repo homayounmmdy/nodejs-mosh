@@ -1,6 +1,6 @@
 {
   "name": "neo-brutal-components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Neo-Brutalist components powered by Tailwind CSS",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
