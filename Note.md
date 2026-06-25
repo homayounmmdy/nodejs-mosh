@@ -132,3 +132,12 @@ Major : that breaking changes
 ## Listing the Install Packages 
 
 you see by running npm list --depth=1 or any number to go deeper
+
+## Viewing Registry Info 
+
+we can see more info about the packages we install like this 
+
+```
+npm view mongoose dependencies
+npm view mongoose versions
+```
