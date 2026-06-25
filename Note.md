@@ -27,7 +27,7 @@ In Node.js, the **Module Wrapper Function** is an automatic function that wraps 
 ## Path Module
 
 ```js
-const path = require('path');
+const path = require("path");
 
 var pathObj = path.parse(__filename);
 console.log(pathObj);
@@ -36,10 +36,10 @@ console.log(pathObj);
 ## OS Module
 
 ```js
-const os = require('os');
+const os = require("os");
 
 var totalMemory = os.totalmem();
-var freeMemory  = os.freemem();
+var freeMemory = os.freemem();
 
 console.log(`Total Memory: ${totalMemory}`);
 console.log(`Free Memory: ${freeMemory}`);
@@ -74,7 +74,7 @@ logger.on("messageLogged", (arg) => {
   console.log("Listener called", arg);
 });
 
-logger.log('message');
+logger.log("message");
 ```
 
 ```js
@@ -83,15 +83,36 @@ const EventEmitter = require("events");
 var url = "https://mylogger.io/log";
 
 class Logger extends EventEmitter {
+  log(message) {
+    // Send an HTTP request
+    console.log(message);
 
-    log(message) {
-      // Send an HTTP request
-      console.log(message);
-    
-      // Raise an event
-      this.emit("messageLogged", { id: 1, url: "http://" });
-    }
+    // Raise an event
+    this.emit("messageLogged", { id: 1, url: "http://" });
+  }
 }
 
 module.exports = Logger;
+```
+
+## HTTP Module
+
+```js
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.write("Hello world");
+    res.end();
+  }
+
+  if (req.url === "/api/courses") {
+    res.write(JSON.stringify([1, 2, 3]));
+    res.end();
+  }
+});
+
+server.listen(3000);
+
+console.log("Listening on port 3000...");
 ```
