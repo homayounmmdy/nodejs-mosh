@@ -63,3 +63,35 @@ fs.readdir("$", function (err, files) {
 
 A signal that something has happened
 
+```js
+const EventEmitter = require("events");
+
+const Logger = require("../logger");
+const logger = new Logger();
+
+// Register a listener
+logger.on("messageLogged", (arg) => {
+  console.log("Listener called", arg);
+});
+
+logger.log('message');
+```
+
+```js
+const EventEmitter = require("events");
+
+var url = "https://mylogger.io/log";
+
+class Logger extends EventEmitter {
+
+    log(message) {
+      // Send an HTTP request
+      console.log(message);
+    
+      // Raise an event
+      this.emit("messageLogged", { id: 1, url: "http://" });
+    }
+}
+
+module.exports = Logger;
+```
