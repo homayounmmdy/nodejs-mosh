@@ -58,3 +58,8 @@ fs.readdir("$", function (err, files) {
   else console.log("Result", files);
 });
 ```
+
+## EVENT
+
+A signal that something has happened
+
