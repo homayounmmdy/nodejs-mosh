@@ -128,3 +128,7 @@ Major : that breaking changes
 ^ : Continue but keep Major 4.x
 ~ : Keep same Major and Minor 1.8.x
   : No changes if somebody else install your project
+
+## Listing the Install Packages 
+
+you see by running npm list --depth=1 or any number to go deeper
