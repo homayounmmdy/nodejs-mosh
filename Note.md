@@ -116,3 +116,15 @@ server.listen(3000);
 
 console.log("Listening on port 3000...");
 ```
+
+## Semantic Versioning
+
+Major.Minor.Patch
+
+Patch : fixing bug
+Minor : add new feature that don't break working API
+Major : that breaking changes 
+
+^ : Continue but keep Major 4.x
+~ : Keep same Major and Minor 1.8.x
+  : No changes if somebody else install your project
