@@ -11,3 +11,11 @@ we things like this in window
 - clearInterval()
 
 in node we have globalThis
+
+## Module
+
+for stop rewriting do not put functions in global scope 
+
+every project has main file for all modules
+
+> in node every file is a module
