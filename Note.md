@@ -23,3 +23,12 @@ every project has main file for all modules
 ## Module Wrapper Function
 
 In Node.js, the **Module Wrapper Function** is an automatic function that wraps every module's code before execution. It provides module-scoped variables like `exports`, `require`, `module`, `__filename`, and `__dirname`, ensuring that top-level variables remain private to that module. This wrapper also prevents polluting the global scope and allows Node to manage module loading and caching effectively.
+
+## Path Module
+
+```js
+const path = require('path');
+
+var pathObj = path.parse(__filename);
+console.log(pathObj);
+```
