@@ -123,21 +123,41 @@ Major.Minor.Patch
 
 Patch : fixing bug
 Minor : add new feature that don't break working API
-Major : that breaking changes 
+Major : that breaking changes
 
 ^ : Continue but keep Major 4.x
 ~ : Keep same Major and Minor 1.8.x
-  : No changes if somebody else install your project
+: No changes if somebody else install your project
 
-## Listing the Install Packages 
+## Listing the Install Packages
 
 you see by running npm list --depth=1 or any number to go deeper
 
-## Viewing Registry Info 
+## Viewing Registry Info
 
-we can see more info about the packages we install like this 
+we can see more info about the packages we install like this
 
 ```
 npm view mongoose dependencies
 npm view mongoose versions
 ```
+
+## RESTfull Services
+
+REST is stand for Representational State Transfer
+
+CRUD Operations are
+
+- Create
+- Read
+- Update
+- Delete
+
+HTTP Methods
+
+- GET
+- POST
+- PUT
+- DELETE
+
+![](./images/HTTP_methods_example.png)
