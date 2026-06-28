@@ -161,3 +161,9 @@ HTTP Methods
 - DELETE
 
 ![](./images/HTTP_methods_example.png)
+
+## Middleware
+
+something between request nad response and do some operation there
+
+![](./images/request_processing_pipline.png)
