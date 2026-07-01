@@ -1,38 +1,41 @@
-const debug = require('debug')('app:startup');
-const config = require('config')
-const helmet = require('helmet');
-const morgan = require('morgan');
+const debug = require("debug")("app:startup");
+const config = require("config");
+const helmet = require("helmet");
+const morgan = require("morgan");
 const Joi = require("joi");
-const logger = require('./logger')
+const logger = require("./logger");
 const express = require("express");
 const app = express();
 
+app.set("view engine", "pug");
+app.set("views", "./views");
+
 app.use(express.json());
-app.use(express.urlencoded({extended : true}));
-app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.use(helmet());
 
 // Configuration
-console.log('Application Name:' + config.get('name'))
-console.log('Mail Server:' + config.get('mail.host'))
-console.log('Mail Password:' + config.get('mail.password'))
+console.log("Application Name:" + config.get("name"));
+console.log("Mail Server:" + config.get("mail.host"));
+// console.log('Mail Password:' + config.get('mail.password'))
 
-if(app.get('env') === 'development') {
-  app.use(morgan('tiny'));
-  debug("Morgan enabled...")
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  debug("Morgan enabled...");
 }
 
 app.use(logger);
-
 
 const courses = [
   { id: 1, name: "course1" },
   { id: 2, name: "course2" },
   { id: 3, name: "course3" },
 ];
+
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.render("index", { title: "My express app", message: "hello" });
 });
 
 app.get("/api/courses", (req, res) => {
@@ -88,8 +91,6 @@ app.get("/api/courses/:id", (req, res) => {
     return res.status(404).send("The course with given ID was not found");
   res.send(course);
 });
-
-
 
 // Port
 const port = process.env.PORT || 3000;
