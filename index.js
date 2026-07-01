@@ -1,3 +1,4 @@
+const debug = require('debug')('app:startup');
 const config = require('config')
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -19,7 +20,7 @@ console.log('Mail Password:' + config.get('mail.password'))
 
 if(app.get('env') === 'development') {
   app.use(morgan('tiny'));
-  console.log("Morgan enabled...")
+  debug("Morgan enabled...")
 }
 
 app.use(logger);
@@ -87,6 +88,8 @@ app.get("/api/courses/:id", (req, res) => {
     return res.status(404).send("The course with given ID was not found");
   res.send(course);
 });
+
+
 
 // Port
 const port = process.env.PORT || 3000;
