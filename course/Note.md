@@ -167,3 +167,28 @@ HTTP Methods
 something between request nad response and do some operation there
 
 ![](./images/request_processing_pipline.png)
+
+## Pattern for async code 
+
+```js 
+console.log("Before");
+const user = getUser(1);
+console.log(user)
+console.log("After");
+
+function getUser(id) {
+  setTimeout(() => {
+    console.log("Reading user from database");
+    return {
+      id: id,
+      gitHubUsername: "mosh",
+    };
+  }, 2000);
+}
+``` 
+
+like this code we get undefined for the value of the user and we have to wait until the value is arrived for that we have these 3 patterns
+
+- Callback
+- Promise
+- async/await

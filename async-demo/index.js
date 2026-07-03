@@ -1,9 +1,14 @@
-import {numberToWords} from 'afn-currency-text'
-
 console.log("Before");
-setTimeout(() => {
-    console.log('Reading user from database');
-}, 2000)
+const user = getUser(1);
+console.log(user)
 console.log("After");
 
-console.log(numberToWords(51039, 'da'));
+function getUser(id) {
+  setTimeout(() => {
+    console.log("Reading user from database");
+    return {
+      id: id,
+      gitHubUsername: "mosh",
+    };
+  }, 2000);
+}
