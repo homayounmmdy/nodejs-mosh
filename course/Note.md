@@ -267,3 +267,28 @@ function getRepositories(username, callback) {
   }, 2000);
 }
 ```
+
+## Promise
+
+> Hold the eventual result of an asynchronous operation
+
+first we have **pending** state and after async operation it would 
+
+- fulfilled
+- rejected
+
+```js
+const p = new Promise((resolve, reject) => {
+  // Kick of some async work
+
+  setTimeout(() => {
+    resolve(1);
+    reject(new Error("message"));
+  }, 2000);
+});
+
+p.then((result) => console.log("Result", result)).catch((err) =>
+  console.log("Error", err.message),
+);
+
+```
