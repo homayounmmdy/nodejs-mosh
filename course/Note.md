@@ -316,3 +316,6 @@ Promise.all([p1, p2])
 ```
 
 if all fulfil we see but if you want if one of them is success we replace Promise.all with Promise.race
+
+## Async / Await
+

@@ -6,6 +6,19 @@ getUser(1)
   .then((commits) => console.log("Commits", commits))
   .catch((err) => console.log("Error", err.message));
 
+async function displayCommits() {
+  try {
+    const user = await getUser(1);
+    const repos = await getRepositories(user.gitHubUsername);
+    const commits = await getCommits(repo[0]);
+  } catch (err) {
+    console.log("Error", err.message);
+  }
+  console.log(commits);
+}
+
+displayCommits();
+
 console.log("After");
 
 function getUser(id) {
