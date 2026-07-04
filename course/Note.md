@@ -292,3 +292,27 @@ p.then((result) => console.log("Result", result)).catch((err) =>
 );
 
 ```
+
+## Running Promises in Parallel
+
+```js
+const p1 = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log("Async operation 1...");
+    resolve(1);
+  }, 2000);
+});
+
+const p2 = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log("Async operation 2...");
+    resolve(2);
+  }, 2000);
+});
+
+Promise.all([p1, p2])
+  .then((result) => console.log(result))
+  .catch((err) => console.log("Error", err.message));
+```
+
+if all fulfil we see but if you want if one of them is success we replace Promise.all with Promise.race
