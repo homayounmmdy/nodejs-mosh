@@ -44,4 +44,16 @@ async function getCourses() {
   console.log(courses);
 }
 
-getCourses();
+async function updateCourse(id) {
+  const course = await Course.findById(id)
+  if (!course) return;
+  course.set({
+    isPublished = true,
+    author : "Author Author"
+  });
+
+  const result = await course.save();
+  console.log(result)
+}
+
+updateCourse();
