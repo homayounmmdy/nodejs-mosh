@@ -326,3 +326,43 @@ if all fulfil we see but if you want if one of them is success we replace Promis
 - Boolean
 - ObjectID
 - Array
+
+## Comparison Query Operators
+
+- **eq** : equal
+- **ne** : not equal
+- **gt** : greater than
+- **gte** : greater than or equal to
+- **lt** : less than
+- **lte** : less than or equal to
+- **in**
+- **nin** : not in
+
+```js 
+async function getCourses() {
+  const courses = await Course
+    .find({ price: { $gte: 10, $lte : 20 } })
+    .limit(10)
+    .sort({ name: 1 })
+    .select({ name: 1, tags: 1 });
+  console.log(courses);
+}
+
+getCourses();
+
+```
+
+this another example
+```js 
+async function getCourses() {
+  const courses = await Course
+    .find({ price: { $in : [10,15,20] } })
+    .limit(10)
+    .sort({ name: 1 })
+    .select({ name: 1, tags: 1 });
+  console.log(courses);
+}
+
+getCourses();
+
+```
