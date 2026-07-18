@@ -405,3 +405,21 @@ async function getCourses() {
   console.log(courses);
 }
 ```
+
+## Count 
+
+to show the amount of element that match the criteria
+
+```js
+async function getCourses() {
+  const courses = await Course
+    .find({
+        author : "Mosh",
+        isPublished : true
+    })
+    .limit(10)
+    .sort({ name: 1 })
+    .count()
+  console.log(courses);
+}
+```
