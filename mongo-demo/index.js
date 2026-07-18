@@ -67,4 +67,10 @@ async function updateCourseUpdate(id) {
   console.log(result)
 }
 
-updateCourseUpdate();
+async function removeCourse(id) {
+  const result = await Course.deleteOne({ _id : id });
+
+  console.log(result)
+}
+
+removeCourse();
