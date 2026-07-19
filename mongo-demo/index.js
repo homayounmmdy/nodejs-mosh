@@ -6,20 +6,28 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB..", err));
 
 const courseSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
+  name: {
+    type: String,
     required: true,
     minlength: 5,
-    maxlength : 255,
+    maxlength: 255,
     // match: /pattern/
   },
-  category : {
-    type : String,
+  category: {
+    type: String,
     required: true,
-    enum : ['web', 'mobile', 'network']
+    enum: ["web", "mobile", "network"],
   },
   author: String,
-  tags: [String],
+  tags: {
+    type: Array,
+    validate: {
+      validator: function (v) {
+        return v && v.length > 0;
+      },
+      message: "A course should have at least one tag",
+    },
+  },
   date: { type: Date, default: Date.now },
   isPublished: Boolean,
   price: {
@@ -27,8 +35,8 @@ const courseSchema = new mongoose.Schema({
     required: function () {
       return this.isPublished;
     },
-    min : 10,
-    max : 200
+    min: 10,
+    max: 200,
   },
 });
 
