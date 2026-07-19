@@ -6,11 +6,30 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB..", err));
 
 const courseSchema = new mongoose.Schema({
-  name: {type : String, required : true},
+  name: { 
+    type: String, 
+    required: true,
+    minlength: 5,
+    maxlength : 255,
+    // match: /pattern/
+  },
+  category : {
+    type : String,
+    required: true,
+    enum : ['web', 'mobile', 'network']
+  },
   author: String,
   tags: [String],
   date: { type: Date, default: Date.now },
   isPublished: Boolean,
+  price: {
+    type: Number,
+    required: function () {
+      return this.isPublished;
+    },
+    min : 10,
+    max : 200
+  },
 });
 
 const Course = mongoose.model("Course", courseSchema);
@@ -26,8 +45,8 @@ async function createCourse() {
   try {
     const result = await course.save();
     console.log(result);
-  }catch (err)  {
-    console.log(err.message)
+  } catch (err) {
+    console.log(err.message);
   }
 }
 
@@ -35,11 +54,10 @@ async function getCourses() {
   const pageNumber = 2;
   const pageSize = 10;
 
-  const courses = await Course
-    .find({
-        author : "Mosh",
-        isPublished : true
-    })
+  const courses = await Course.find({
+    author: "Mosh",
+    isPublished: true,
+  })
     .skip((pageNumber - 1) * pageSize)
     .limit(pageSize)
     .limit(10)
@@ -49,32 +67,35 @@ async function getCourses() {
 }
 
 async function updateCourseQuery(id) {
-  const course = await Course.update(id)
+  const course = await Course.update(id);
   if (!course) return;
   course.set({
-    isPublished = true,
-    author : "Author Author"
+    isPublished: true,
+    author: "Author Author",
   });
 
   const result = await course.save();
-  console.log(result)
+  console.log(result);
 }
 
 async function updateCourseUpdate(id) {
-  const result = await Course.update({ _id : id }, {
-    $set: {
-      author : "Homayoun",
-      isPublished = false
-    }
-  });
+  const result = await Course.update(
+    { _id: id },
+    {
+      $set: {
+        author: "Homayoun",
+        isPublished: false,
+      },
+    },
+  );
 
-  console.log(result)
+  console.log(result);
 }
 
 async function removeCourse(id) {
-  const result = await Course.deleteOne({ _id : id });
+  const result = await Course.deleteOne({ _id: id });
 
-  console.log(result)
+  console.log(result);
 }
 
 createCourse();
