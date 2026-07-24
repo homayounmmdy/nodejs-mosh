@@ -444,3 +444,50 @@ async function getCourses() {
   console.log(courses);
 }
 ```
+
+## Modeling Relationships 
+
+we have three types of data base 
+
+### Reference (Normalization )
+
+in this type of database our data is consistency but our query performance is slow 
+
+```js
+let author = {
+  authorID : 1
+  name : 'Mosh'
+}
+
+let course = {
+  author = authorID
+}
+```
+
+## Embedded Documents (Denormalization)
+
+in this type of data our data is really fast by query but it can be inconstant tomorrow if we change author name it might not change in some places 
+
+```js 
+let course = {
+  author : {
+    name : 'Mosh'
+  }
+}
+```
+
+## Hybrid
+
+```js 
+let author = {
+  name : 'mosh',
+  // 50 other properties
+}
+
+let course = {
+  author : {
+    id : 'ref',
+    name : 'mosh'
+  }
+}
+```
