@@ -491,3 +491,15 @@ let course = {
   }
 }
 ```
+
+## ObjectID 
+
+we have id like this for example 5a724953ab83547957541e6e
+
+in total is 12 bytes 
+- 4 bytes : timestamp
+- 3 bytes : machine identifier
+- 2 bytes : process identifier
+- 3 bytes : counter
+ 
+this is an example of getting id the chance getting one id twice is if user at same time at same machine and same process and generate more than 16 million we see duplication 
