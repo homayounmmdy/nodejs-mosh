@@ -538,3 +538,12 @@ The practice of writing code to test our code, and then run those tests in an au
 - Cover unit test gaps with integration tests.
 - Use end-to-end tests sparingly.
 
+## Tooling
+
+- Jasmine
+- Mocha
+  - Chai
+  - Sinon
+- Jest
+ 
+> Focus on the **fundamentals** not the tooling
