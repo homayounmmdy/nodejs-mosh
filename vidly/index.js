@@ -1,17 +1,14 @@
 require("express-async-errors");
 const winston = require("winston");
 require("winston-mongodb");
-const error = require("./middleware/error");
 const config = require("config");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
-const express = require("express");
+const express = require("express"); 
 const app = express();
-const genres = require("./routes/genres");
-const customers = require("./routes/customers");
-const users = require("./routes/users");
-const auth = require("./routes/auth");
+
+require('./startup/routes')(app);
  
 winston.handleExceptions(
   new winston.transports.File({ filename: "uncaughtException.log" }),
@@ -38,13 +35,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.log("Could not connect to MongoDB..."));
 
-app.use(express.json());
-app.use("/api/genres", genres);
-app.use("/api/customers", customers);
-app.use("/api/users", users);
-app.use("/api/auth", auth);
-
-app.use(error);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
