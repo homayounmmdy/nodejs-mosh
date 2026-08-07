@@ -507,4 +507,14 @@ this is an example of getting id the chance getting one id twice is if user at s
 ## What is automated testing
 
 The practice of writing code to test our code, and then run those tests in an automated fashion.
- 
+
+## Benefits of automated testing
+
+- Test your code frequently , in less time
+- Catch bugs before deploying
+- Deploy with confidence
+- Refactor with confidence
+- Focus more on the quality
+
+> **Refactoring** means changing the structure of the code without changing its behavior.
+
