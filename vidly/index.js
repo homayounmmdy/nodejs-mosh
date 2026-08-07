@@ -12,10 +12,13 @@ const genres = require("./routes/genres");
 const customers = require("./routes/customers");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
+ 
+winston.handleExceptions(
+  new winston.transports.File({ filename: "uncaughtException.log" }),
+);
 
-process.on("uncaughtException", (ex) => {
-  console.log("WE GOT AN UNCAUGHT EXCEPTION");
-  winston.error(ex.message, ex); 
+process.on("unhandledRejection", (ex) => {
+  throw ex;
 });
 
 winston.add(winston.transports.File, { filename: "logfile.log" });
