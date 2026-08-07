@@ -168,12 +168,12 @@ something between request nad response and do some operation there
 
 ![](./images/request_processing_pipline.png)
 
-## Pattern for async code 
+## Pattern for async code
 
-```js 
+```js
 console.log("Before");
 const user = getUser(1);
-console.log(user)
+console.log(user);
 console.log("After");
 
 function getUser(id) {
@@ -185,7 +185,7 @@ function getUser(id) {
     };
   }, 2000);
 }
-``` 
+```
 
 like this code we get undefined for the value of the user and we have to wait until the value is arrived for that we have these 3 patterns
 
@@ -228,7 +228,7 @@ function getRepositories(username, callback) {
 
 ## Named Functions to Rescue
 
-instead of calling anonymous function we use named function but still this is not a good approach 
+instead of calling anonymous function we use named function but still this is not a good approach
 
 ```js
 console.log("Before");
@@ -272,7 +272,7 @@ function getRepositories(username, callback) {
 
 > Hold the eventual result of an asynchronous operation
 
-first we have **pending** state and after async operation it would 
+first we have **pending** state and after async operation it would
 
 - fulfilled
 - rejected
@@ -290,7 +290,6 @@ const p = new Promise((resolve, reject) => {
 p.then((result) => console.log("Result", result)).catch((err) =>
   console.log("Error", err.message),
 );
-
 ```
 
 ## Running Promises in Parallel
@@ -321,7 +320,7 @@ if all fulfil we see but if you want if one of them is success we replace Promis
 
 - String
 - Number
-- Date 
+- Date
 - Buffer
 - Boolean
 - ObjectID
@@ -338,10 +337,9 @@ if all fulfil we see but if you want if one of them is success we replace Promis
 - **in**
 - **nin** : not in
 
-```js 
+```js
 async function getCourses() {
-  const courses = await Course
-    .find({ price: { $gte: 10, $lte : 20 } })
+  const courses = await Course.find({ price: { $gte: 10, $lte: 20 } })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
@@ -349,14 +347,13 @@ async function getCourses() {
 }
 
 getCourses();
-
 ```
 
 this another example
-```js 
+
+```js
 async function getCourses() {
-  const courses = await Course
-    .find({ price: { $in : [10,15,20] } })
+  const courses = await Course.find({ price: { $in: [10, 15, 20] } })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
@@ -364,19 +361,17 @@ async function getCourses() {
 }
 
 getCourses();
-
 ```
 
 ## Logical Query Operators
 
-- or 
+- or
 - and
 
 ```js
 async function getCourses() {
-  const courses = await Course
-    .find()
-    .or([{author: "Mosh"} , {isPublished : true}])
+  const courses = await Course.find()
+    .or([{ author: "Mosh" }, { isPublished: true }])
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
@@ -398,7 +393,6 @@ async function getCourses() {
     // Contains Mosh
     .find({ author: /.*Mosh.*/i })
 
-
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
@@ -406,36 +400,34 @@ async function getCourses() {
 }
 ```
 
-## Count 
+## Count
 
 to show the amount of element that match the criteria
 
 ```js
 async function getCourses() {
-  const courses = await Course
-    .find({
-        author : "Mosh",
-        isPublished : true
-    })
+  const courses = await Course.find({
+    author: "Mosh",
+    isPublished: true,
+  })
     .limit(10)
     .sort({ name: 1 })
-    .count()
+    .count();
   console.log(courses);
 }
 ```
 
-## Pagination 
+## Pagination
 
-```js 
+```js
 async function getCourses() {
   const pageNumber = 2;
   const pageSize = 10;
 
-  const courses = await Course
-    .find({
-        author : "Mosh",
-        isPublished : true
-    })
+  const courses = await Course.find({
+    author: "Mosh",
+    isPublished: true,
+  })
     .skip((pageNumber - 1) * pageSize)
     .limit(pageSize)
     .limit(10)
@@ -445,13 +437,13 @@ async function getCourses() {
 }
 ```
 
-## Modeling Relationships 
+## Modeling Relationships
 
-we have three types of data base 
+we have three types of data base
 
 ### Reference (Normalization )
 
-in this type of database our data is consistency but our query performance is slow 
+in this type of database our data is consistency but our query performance is slow
 
 ```js
 let author = {
@@ -466,43 +458,44 @@ let course = {
 
 ## Embedded Documents (Denormalization)
 
-in this type of data our data is really fast by query but it can be inconstant tomorrow if we change author name it might not change in some places 
+in this type of data our data is really fast by query but it can be inconstant tomorrow if we change author name it might not change in some places
 
-```js 
+```js
 let course = {
-  author : {
-    name : 'Mosh'
-  }
-}
+  author: {
+    name: "Mosh",
+  },
+};
 ```
 
 ## Hybrid
 
-```js 
+```js
 let author = {
-  name : 'mosh',
+  name: "mosh",
   // 50 other properties
-}
+};
 
 let course = {
-  author : {
-    id : 'ref',
-    name : 'mosh'
-  }
-}
+  author: {
+    id: "ref",
+    name: "mosh",
+  },
+};
 ```
 
-## ObjectID 
+## ObjectID
 
 we have id like this for example 5a724953ab83547957541e6e
 
-in total is 12 bytes 
+in total is 12 bytes
+
 - 4 bytes : timestamp
 - 3 bytes : machine identifier
 - 2 bytes : process identifier
 - 3 bytes : counter
- 
-this is an example of getting id the chance getting one id twice is if user at same time at same machine and same process and generate more than 16 million we see duplication 
+
+this is an example of getting id the chance getting one id twice is if user at same time at same machine and same process and generate more than 16 million we see duplication
 
 ## What is automated testing
 
@@ -518,3 +511,20 @@ The practice of writing code to test our code, and then run those tests in an au
 
 > **Refactoring** means changing the structure of the code without changing its behavior.
 
+## Types of test
+
+- Unite
+  - Tests a unite of an application without **external dependencies**
+    - cheap to write
+    - Execute fast
+    - Don't give a lot of confidence
+- Integration
+  - Tests the application with its **external dependencies**
+    - Take longer to execute
+    - Give more confidence
+- E2E (End-to-End)
+  - Drives an application through its UI.
+    - Give you the greatest confidence
+    - Very slow
+    - Very brittle
+     
