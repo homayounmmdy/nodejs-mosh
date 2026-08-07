@@ -503,3 +503,8 @@ in total is 12 bytes
 - 3 bytes : counter
  
 this is an example of getting id the chance getting one id twice is if user at same time at same machine and same process and generate more than 16 million we see duplication 
+
+## What is automated testing
+
+The practice of writing code to test our code, and then run those tests in an automated fashion.
+ 
