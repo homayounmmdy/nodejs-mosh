@@ -1,0 +1,19 @@
+{
+  "name": "testing-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^23.5.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
