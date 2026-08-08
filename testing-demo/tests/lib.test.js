@@ -17,9 +17,17 @@ describe("absolute", () => {
   });
 });
 
-describe('greet', () => {
-  it('should return the greeting message', () => {
-    const result = lib.greet('Homayoun');
-    expect(result).toMatch(/Homayoun/)
-  })
-})
+describe("greet", () => {
+  it("should return the greeting message", () => {
+    const result = lib.greet("Homayoun");
+    expect(result).toMatch(/Homayoun/);
+  });
+});
+
+describe("getCurrencies", () => {
+  it("should return supported currencies", () => {
+    const result = lib.getCurrencies();
+
+    expect(result).toEqual(expect.arrayContaining(["EUR", "AUD", "USD"]));
+  });
+});
