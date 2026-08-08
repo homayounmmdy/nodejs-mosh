@@ -547,3 +547,5 @@ The practice of writing code to test our code, and then run those tests in an au
 - Jest
  
 > Focus on the **fundamentals** not the tooling
+
+> Tests are **first-class citizens** in your source code
