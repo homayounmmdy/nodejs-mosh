@@ -38,3 +38,20 @@ describe("getProduct", () => {
     expect(result).toMatchObject({ id: 1, price: 10 });
   });
 });
+
+describe("registerUser", () => {
+  it("should throw if username is falsy", () => {
+    const args = [null, undefined, NaN, "", 0, false];
+    args.forEach((a) => {
+      expect(() => {
+        lib.registerUser(a);
+      }).toThrow();
+    });
+  });
+
+  it("should return a user object if valid username is passed", () => {
+    const result = lib.registerUser("homayoun");
+    expect(result).toMatchObject({ username: "homayoun" });
+    expect(result.id).toBeGreaterThan(0);
+  });
+});
