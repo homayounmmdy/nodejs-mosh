@@ -7,6 +7,7 @@ describe("auth middleware", () => {
   beforeEach(() => {
     server = require("../../index");
   });
+  
   afterEach(async () => {
     await Genre.remove({});
     server.close();
