@@ -527,7 +527,7 @@ The practice of writing code to test our code, and then run those tests in an au
     - Give you the greatest confidence
     - Very slow
     - Very brittle
-     
+
 ## Test Pyramid
 
 ![](./images/test_pyramid.png)
@@ -545,7 +545,21 @@ The practice of writing code to test our code, and then run those tests in an au
   - Chai
   - Sinon
 - Jest
- 
+
 > Focus on the **fundamentals** not the tooling
 
 > Tests are **first-class citizens** in your source code
+
+## Test Driven Development
+
+With TDD you write your tests before writing the production code
+
+- write a failing test.
+- write the simplest code to make the test pass.
+- refactor if necessary
+
+Benefits of TDD
+
+- Testable source code
+- Full coverage by Tests
+- Simpler Implementation
