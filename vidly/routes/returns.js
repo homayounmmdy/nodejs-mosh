@@ -4,14 +4,11 @@ const { Rental } = require("../models/rental");
 const { Movie } = require("../models/movie");
 const auth = require("../middleware/auth");
 const router = express.Router();
-const validate = require('../middleware/validate')
-
+const validate = require("../middleware/validate");
 
 router.post("/", [auth, validate(validateReturn)], async (req, res) => {
-  const rental = await Rental.findOne({
-    "customer._id": req.body.customerId,
-    "movie._id": req.body.movieId,
-  });
+  const rental = await Rental.lookup(req.body.customerId, req.body.movieId);
+
   if (!result) return res.status(404).send("Rental not found.");
 
   if (rental.dateReturned)
